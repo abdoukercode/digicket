@@ -1,0 +1,84 @@
+<?php
+
+
+namespace AppBundle\Document;
+
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Vivait\StringGeneratorBundle\Annotation\GeneratorAnnotation as Generate;
+/**
+ * @MongoDB\Document
+ */
+class User
+{
+
+    /**
+     * @MongoDB\Id
+     */
+    protected $id;
+
+    /**
+     * @MongoDB\Field(type="string" , nullable=true)
+     */
+    protected $name;
+
+    /**
+     * @MongoDB\Field(type="string", nullable=true)
+     */
+    protected $username;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $password;
+
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $email;
+
+    /**
+     * @MongoDB\Field(type="string")
+     * @Generate(generator="string", options={"length"=12})
+     */
+    protected $public_id;
+
+    /**
+     * @MongoDB\Field(type="string" , nullable=true)
+     */
+    protected $facebook_uid;
+
+    /**
+     * @MongoDB\Field(type="string" , nullable=true)
+     */
+    protected $avatar;
+
+    /**
+     * @MongoDB\Field(type="boolean")
+     */
+    protected $enabled;
+
+
+    /**
+     * @MongoDB\Field(type="string", nullable=true)
+     */
+    protected $refresh_token;
+
+    /**
+     * @MongoDB\Field(type="date")
+     */
+    protected $created_at;
+
+
+    /**
+     * @MongoDB\Field(type="date")
+     */
+    protected $updated_at;
+
+
+    /**
+     * @MongoDB\ReferenceMany(targetDocument="Ticket" , mappedBy="user" )
+     */
+    private $tickets;
+
+}

@@ -1,0 +1,69 @@
+<?php
+
+
+namespace AppBundle\Document;
+
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+/**
+ * @MongoDB\Document
+ */
+class Ticket
+{
+    /**
+     * @MongoDB\Id
+     */
+    protected $id;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $shop;
+
+    /**
+     * @MongoDB\Field(type="string", nullable=true)
+     */
+    protected $url;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $user_id;
+
+
+    /**
+     *
+     * @MongoDB\Field(type="string")
+     */
+    protected $md5sum;
+
+    /**
+     * @MongoDB\Field(type="date")
+     */
+    protected $print_time;
+
+
+    /**
+     * @MongoDB\Field(type="boolean")
+     */
+    protected $is_pro = false;
+
+
+    /**
+     * @MongoDB\Field(type="date")
+     */
+    protected $created_at;
+
+    /**
+     * @MongoDB\Field(type="date")
+     */
+    protected $updated_at;
+
+
+    /**
+     * @MongoDB\ReferenceOne(targetDocument="User", inversedBy="tickets")
+     */
+    protected $user;
+
+
+}
