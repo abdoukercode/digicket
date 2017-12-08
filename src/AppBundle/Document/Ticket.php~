@@ -6,14 +6,11 @@ namespace AppBundle\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
- * @MongoDB\Document
+ * @MongoDB\Document(repositoryClass="AppBundle\Repository\TicketRepository")
  */
 class Ticket
 {
-    /**
-     * @MongoDB\Id
-     */
-    protected $id;
+
 
     /**
      * @MongoDB\Field(type="string")
@@ -32,13 +29,12 @@ class Ticket
 
 
     /**
-     *
-     * @MongoDB\Field(type="string")
+     *@MongoDB\Id
      */
     protected $md5sum;
 
     /**
-     * @MongoDB\Field(type="date")
+     * @MongoDB\Field(type="date", nullable="true")
      */
     protected $print_time;
 
@@ -50,20 +46,24 @@ class Ticket
 
 
     /**
-     * @MongoDB\Field(type="date")
+     * @MongoDB\Field(type="date", nullable=true)
      */
     protected $created_at;
 
     /**
-     * @MongoDB\Field(type="date")
+     * @MongoDB\Field(type="date", nullable=true)
      */
     protected $updated_at;
 
 
     /**
      * @MongoDB\ReferenceOne(targetDocument="User", inversedBy="tickets")
+     *
      */
     protected $user;
+
+
+
 
 
 }

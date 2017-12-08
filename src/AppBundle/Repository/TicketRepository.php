@@ -12,4 +12,10 @@ use Doctrine\ODM\MongoDB\DocumentRepository;
  */
 class TicketRepository extends DocumentRepository
 {
+    public function searchTicket($id_user, $ref_fact) {
+        $query = $this->createQueryBuilder();
+        $ticket = $query->findOneBy(array('user_id' => $id_user, 'md5sum' => $ref_fact));
+
+        return $ticket;
+    }
 }

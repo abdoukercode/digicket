@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+
+        {% block body %}
+
+
+            <h2>le TicketOne recherché est : </h2>
+                <div class="" style="margin:auto;">
+                <ul class="list-group">
+                    <li class="list-group-item">Shop: {{TicketOne.shop}}</li>
+                    <li class="list-group-item"> url: {{TicketOne.url}}</li>
+                    <li class="list-group-item">user_id: {{TicketOne.user.id}}</li>
+                    <li class="list-group-item">ticket_id: {{TicketOne.md5sum}}</li>
+                    <li class="list-group-item">print_time:{{TicketOne.printTime | date('Y-m-d')}}</li>
+                    <li class="list-group-item">created at:{{TicketOne.createdAt}} | date('Y-m-d')}}</li>
+                    <li class="list-group-item">upadted at:{{TicketOne.updatedAt}}| date('Y-m-d')}}</li>
+
+
+                </ul>
+                </div>
+        {% endblock %}

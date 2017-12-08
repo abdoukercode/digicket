@@ -4,16 +4,14 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-
+use AppBundle\Document\User;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @MongoDB\Document(repositoryClass="AppBundle\Repository\TicketRepository")
  */
 class Ticket
 {
-    /**
-     * @MongoDB\Id
-     */
-    protected $id;
+
 
     /**
      * @MongoDB\Field(type="string")
@@ -25,20 +23,15 @@ class Ticket
      */
     protected $url;
 
-    /**
-     * @MongoDB\Field(type="string")
-     */
-    protected $user_id;
 
 
     /**
-     *
-     * @MongoDB\Field(type="string")
+     *@MongoDB\Id
      */
     protected $md5sum;
 
     /**
-     * @MongoDB\Field(type="date")
+     * @MongoDB\Field(type="date", nullable="true")
      */
     protected $print_time;
 
@@ -50,32 +43,27 @@ class Ticket
 
 
     /**
-     * @MongoDB\Field(type="date")
+     * @MongoDB\Field(type="date", nullable=true)
      */
     protected $created_at;
 
     /**
-     * @MongoDB\Field(type="date")
+     * @MongoDB\Field(type="date", nullable=true)
      */
     protected $updated_at;
 
 
     /**
+     *
      * @MongoDB\ReferenceOne(targetDocument="User", inversedBy="tickets")
+     *
      */
     protected $user;
 
 
 
-    /**
-     * Get id
-     *
-     * @return id $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+
+
 
     /**
      * Set shop
@@ -121,44 +109,12 @@ class Ticket
         return $this->url;
     }
 
-    /**
-     * Set userId
-     *
-     * @param string $userId
-     * @return $this
-     */
-    public function setUserId($userId)
-    {
-        $this->user_id = $userId;
-        return $this;
-    }
 
-    /**
-     * Get userId
-     *
-     * @return string $userId
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
-    }
-
-    /**
-     * Set md5sum
-     *
-     * @param string $md5sum
-     * @return $this
-     */
-    public function setMd5sum($md5sum)
-    {
-        $this->md5sum = $md5sum;
-        return $this;
-    }
 
     /**
      * Get md5sum
      *
-     * @return string $md5sum
+     * @return id $md5sum
      */
     public function getMd5sum()
     {

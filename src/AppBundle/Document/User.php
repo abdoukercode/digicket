@@ -2,9 +2,9 @@
 
 
 namespace AppBundle\Document;
-
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-
+use AppBundle\Document\Ticket;
 /**
  * @MongoDB\Document(repositoryClass="AppBundle\Repository\UserRepository")
  */
@@ -60,31 +60,37 @@ class User
     protected $refresh_token;
 
     /**
-     * @MongoDB\Field(type="date")
+     * @MongoDB\Field(type="date", nullable=true)
      */
     protected $created_at;
 
 
     /**
-     * @MongoDB\Field(type="date")
+     * @MongoDB\Field(type="date", nullable=true)
      */
     protected $updated_at;
 
 
     /**
+     * @MongoDB\Field
      * @MongoDB\ReferenceMany(targetDocument="Ticket" , mappedBy="user" )
      */
     private $tickets;
 
+
+    public function __construct()
+    {
+        $this->tickets = new ArrayCollection();;
+    }
     
     /**
-     * Get id
+     * Get publicId
      *
-     * @return id $id
+     * @return id $publicId
      */
-    public function getId()
+    public function getPublicId()
     {
-        return $this->id;
+        return $this->public_id;
     }
 
     /**
@@ -173,28 +179,6 @@ class User
     public function getEmail()
     {
         return $this->email;
-    }
-
-    /**
-     * Set publicId
-     *
-     * @param string $publicId
-     * @return $this
-     */
-    public function setPublicId($publicId)
-    {
-        $this->public_id = $publicId;
-        return $this;
-    }
-
-    /**
-     * Get publicId
-     *
-     * @return string $publicId
-     */
-    public function getPublicId()
-    {
-        return $this->public_id;
     }
 
     /**
